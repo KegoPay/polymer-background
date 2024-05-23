@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://polymerregistry.azurecr.io/
-        username: ${{ secrets.AzureAppService_ContainerUsername_11da6713f0904718ac5f4adc0c747975 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_6b5ce0c5c57d4d80bbd6e9b9c2eb4af1 }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_c19c822143994e53aa391846cc1d0373 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_1b17561e5fe048a79ed10b2e33328237 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: polymerregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_11da6713f0904718ac5f4adc0c747975 }}/polymer-background:${{ github.sha }}
+        tags: polymerregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_c19c822143994e53aa391846cc1d0373 }}/polymerregistry/polymer-background:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'polymer-background-staging'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_d2576ec5fd884073ba5951570fcda330 }}
-        images: 'polymerregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_11da6713f0904718ac5f4adc0c747975 }}/polymer-background:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_a89ddde83d164835b98f60c1b1b0a0f0 }}
+        images: 'polymerregistry.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_c19c822143994e53aa391846cc1d0373 }}/polymerregistry/polymer-background:${{ github.sha }}'
